@@ -7,17 +7,26 @@
   <meta charset="UTF-8">
   <title>userInput.jsp</title>
   <jsp:include page="/WEB-INF/views/include/bs5.jsp" />
+  <style>
+    .custom-shadow {
+        box-shadow: 0px 0px 20px rgba(100, 149, 237, 0.8) !important; /* 푸른 빛 */
+    }
+    /*
+	<body class="bg-black text-white">
+	<div class="container bg-dark rounded-4 justify-content-center w-100 min-vh-100 overflow-auto custom-shadow">
+	<h2 class="p-3">
+    <table class="table table-bordered text-center align-middle rounded-3 overflow-hidden">
+    */
+  </style>
 </head>
-<body>
+<body class="bg-black text-white">
 <jsp:include page="/WEB-INF/views/include/nav.jsp" />
 <jsp:include page="/WEB-INF/views/include/slide2.jsp" />
 <p><br/></p>
-<div class="container">
+<div class="container bg-dark rounded-4 justify-content-center w-100 min-vh-100 overflow-auto custom-shadow">
+  <h2 class="p-3">회원 가입</h2>
   <form method="post">
-  	<table class="table table-bordered text-center">
-      <tr>
-        <td colspan="2"><font size="5">회 원 가 입</font></td>
-      </tr>
+  	<table class="table table-bordered text-center align-middle rounded-3 overflow-hidden">
       <tr>
         <th>아이디</th>
         <td><input type="text" name="mid" id="mid" placeholder="아이디를 입력하세요" autofocus required class="form-control" /></td>
@@ -45,6 +54,8 @@
         <th>주소</th>
         <td><input type="text" name="address" id="address" class="form-control" /></td>
       </tr>
+    </table>
+    <table class="table table-dark table-borderless text-center rounded-3 overflow-hidden">
       <tr>
         <td colspan="2">
           <input type="submit" value="회원가입" class="btn btn-success me-2"/>

@@ -25,25 +25,59 @@
     	});
     }
   </script>
+  <style>
+    .custom-shadow {
+        box-shadow: 0px 0px 20px rgba(100, 149, 237, 0.8) !important; /* 푸른 빛 */
+    }
+    /*
+	<body class="bg-black text-white">
+	<div class="container bg-dark rounded-4 justify-content-center vh-100 custom-shadow">
+	<h2 class="p-3">
+    <table class="table table-bordered text-center align-middle rounded-3 overflow-hidden">
+    */
+	</style>
 </head>
-<body>
+<body class="bg-black text-white">
 <jsp:include page="/WEB-INF/views/include/nav.jsp" />
 <jsp:include page="/WEB-INF/views/include/slide2.jsp" />
 <p><br/></p>
-<div class="container">
-  <h2>AJAX 연습</h2>
+<div class="container bg-dark rounded-4 justify-content-center vh-100 custom-shadow">
+  <h2 class="p-3">AJAX 연습</h2>
   <hr/>
-  <div>기본
-    <a href="javascript:ajaxTest1(10)" class="btn btn-success me-2 mb-2">값전달1</a>
-    : <span id="demo1"></span>
-  </div>
-  <hr/>
-  <div>응용(String 배열) - 시(도)/구(시,군,읍) 출력<br/>
-    <a href="${ctp}/study/ajax/ajaxTest2_1" class="btn btn-primary mr-2">String배열</a>
-  </div>
-  <div>응용(객체 - vos) - 시(도)/구(시,군,읍) 출력<br/>
-    <a href="${ctp}/study/ajax/ajaxTest2_2" class="btn btn-info mr-2">vos 객체</a>
-  </div>
+   <table class="table table-bordered text-center align-middle rounded-3 overflow-hidden">
+    <thead class="table-light">
+      <tr>
+        <th width="30%">기능</th>
+        <th width="70%">설명 / 결과</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <a href="javascript:ajaxTest1(10)" class="btn btn-success">값전달1</a>
+        </td>
+        <td>
+          <span id="demo1">값 전달 후 결과 출력</span>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="${ctp}/study/ajax/ajaxTest2_1" class="btn btn-primary">String배열</a>
+        </td>
+        <td>
+          <span>응용: 시(도) / 구(시,군,읍) 출력</span>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a href="${ctp}/study/ajax/ajaxTest2_2" class="btn btn-info">vos 객체</a>
+        </td>
+        <td>
+          <span>응용: VOS 객체 활용</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 <p><br/></p>
 <jsp:include page="/WEB-INF/views/include/footer.jsp" />

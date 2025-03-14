@@ -21,18 +21,30 @@
     	location.href = "${ctp}/user/userOrderList/"+order;
     }
   </script>
+  <style>
+    .custom-shadow {
+        box-shadow: 0px 0px 20px rgba(100, 149, 237, 0.8) !important; /* 푸른 빛 */
+    }
+    /*
+	<body class="bg-black text-white">
+	<div class="container bg-dark rounded-4 justify-content-center w-100 min-vh-100 overflow-auto custom-shadow">
+	<h2 class="p-3">
+    <table class="table table-bordered text-center align-middle rounded-3 overflow-hidden">
+    */
+	</style>
 </head>
-<body>
+<body class="bg-black text-white">
 <jsp:include page="/WEB-INF/views/include/nav.jsp" />
 <jsp:include page="/WEB-INF/views/include/slide2.jsp" />
 <p><br/></p>
-<div class="container">
-  <h2 class="text-center mb-4">회 원 전 체 리 스 트</h2>
-  <table class="table table-borderless m-0">
+<div class="container bg-dark rounded-4 justify-content-center w-100 min-vh-100 overflow-auto custom-shadow">
+  <h2 class="p-3">회 원 전 체 리 스 트</h2>
+  <div class="overflow-auto">
+  <table class="table table-dark table-borderless rounded-3 overflow-hidden m-0" >
     <tr>
-      <td class="text-start"><a href="${ctp}/user/userMain" class="btn btn-success btn-sm">돌아가기</a></td>
-      <td class="text-end">
-        <select name="order" id="order" onchange="orderCheck()">
+      <td class="text-start ps-0 pb-2"><a href="${ctp}/user/userMain" class="btn btn-success">돌아가기</a></td>
+      <td class="text-end pe-0 pb-2">
+        <select name="order" id="order" onchange="orderCheck()" class="form-select rounded-3">
           <option value="idxDesc"	${order=='idxDesc' 	? 'selected' : ''}>최근가입순</option>
           <option value="idx"  		${order=='idx' 		? 'selected' : ''}>가입순</option>
           <option value="name" 		${order=='name' 	? 'selected' : ''}>성명순</option>
@@ -41,7 +53,7 @@
       </td>
     </tr>
   </table>
-  <table class="table table-hover text-center">
+  <table class="table table-bordered text-center align-middle rounded-3 overflow-hidden table-hover">
     <tr class="table-secondary">
       <th>번호</th>
       <th>아이디</th>
@@ -68,8 +80,9 @@
       </tr>
     </c:forEach>
   </table>
+  </div>
   <br/>
-  <div><a href="${ctp}/user/userMain" class="btn btn-warning">돌아가기</a></div>
+  <div class="pb-3"><a href="${ctp}/user/userMain" class="btn btn-warning">돌아가기</a></div>
 </div>
 <p><br/></p>
 <jsp:include page="/WEB-INF/views/include/footer.jsp" />

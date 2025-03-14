@@ -8,15 +8,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>admin.jsp</title>
   <jsp:include page="/WEB-INF/views/include/bs5.jsp" />
+  <style>
+    .custom-shadow {
+        box-shadow: 0px 0px 20px rgba(100, 149, 237, 0.8) !important; /* 푸른 빛 */
+    }
+    /*
+	<body class="bg-black text-white">
+	<div class="container bg-dark rounded-4 justify-content-center vh-100 custom-shadow">
+	<h2 class="p-3">
+    <table class="table table-bordered text-center align-middle rounded-3 overflow-hidden">
+    */
+	</style>
 </head>
-<body>
+<body class="bg-black text-white">
 <jsp:include page="/WEB-INF/views/include/nav.jsp" />
 <jsp:include page="/WEB-INF/views/include/slide2.jsp" />
 <p><br/></p>
-<div class="container">
-<h2 class="text-center">관 리 자 인 증</h2>
+<div class="container bg-dark rounded-4 justify-content-center vh-100 custom-shadow">
+<h2 class="p-3">관 리 자 인 증</h2>
   <form name="myform" method="post">
-    <table class="table table-bordered border-secondary-subtle">
+    <table class="table table-bordered border-secondary-subtle rounded-3 overflow-hidden">
       <tr>
         <th class="bg-secondary-subtle align-middle text-center">아이디</th>
         <td><input type="text" name="mid" id="mid" value="admin" required autofocus class="form-control"/></td>

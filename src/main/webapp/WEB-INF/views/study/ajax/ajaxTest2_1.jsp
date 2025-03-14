@@ -47,13 +47,24 @@
     	$("#demo").html(str);
     }
   </script>
+  <style>
+    .custom-shadow {
+        box-shadow: 0px 0px 20px rgba(100, 149, 237, 0.8) !important; /* 푸른 빛 */
+    }
+    /*
+	<body class="bg-black text-white">
+	<div class="container bg-dark rounded-4 justify-content-center vh-100 custom-shadow">
+	<h2 class="p-3">
+    <table class="table table-bordered text-center align-middle rounded-3 overflow-hidden">
+    */
+	</style>
 </head>
-<body>
+<body class="bg-black text-white">
 <jsp:include page="/WEB-INF/views/include/nav.jsp" />
 <jsp:include page="/WEB-INF/views/include/slide2.jsp" />
 <p><br/></p>
-<div class="container">
-  <h2>문자열 배열 연습(도/시/군~~~)</h2>
+<div class="container bg-dark rounded-4 justify-content-center vh-100 custom-shadow">
+  <h2 class="p-3">문자열 배열 연습(도/시/군~~~)</h2>
   <hr/>
   <form>
     <h3>도시를 선택해주세요</h3>

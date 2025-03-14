@@ -23,15 +23,25 @@
     th {
       text-align: center;
     }
-  </style>
+    
+    .custom-shadow {
+        box-shadow: 0px 0px 20px rgba(100, 149, 237, 0.8) !important; /* 푸른 빛 */
+    }
+    /*
+	<body class="bg-black text-white">
+	<div class="container bg-dark rounded-4 justify-content-center w-100 min-vh-100 overflow-auto custom-shadow">
+	<h2 class="p-3">
+    <table class="table table-bordered text-center align-middle rounded-3 overflow-hidden">
+    */
+	</style>
 </head>
-<body>
+<body class="bg-black text-white">
 <jsp:include page="/WEB-INF/views/include/nav.jsp" />
 <jsp:include page="/WEB-INF/views/include/slide2.jsp" />
 <p><br/></p>
-<div class="container">
-  <h2 class="text-center">방명록 리스트</h2>
-  <table class="table table-borderless m-0 p-0">
+<div class="container bg-dark rounded-4 justify-content-center w-100 min-vh-100 overflow-auto custom-shadow">
+  <h2 class="p-3">방명록 리스트</h2>
+  <table class="table table-dark table-borderless m-0 p-0">
   	<tr>
   	  <td><a href="guestInput" class="btn btn-success btn-sm">글쓰기</a></td>
   	  <td class="text-end">
@@ -54,7 +64,7 @@
   	</tr>
   </table>
   <c:forEach var="vo" items="${vos}" varStatus="st">
-	  <table class="table table-borderless m-0 p-0">
+	  <table class="table table-borderless mb-2 p-0 rounded-3 overflow-hidden">
 			<tr>
 			  <td>글번호 : ${vo.idx}
 			    <c:if test="${sAdmin == 'adminOk'}"><a href="javascript:delCheck(${vo.idx})" class="btn btn-danger btn-sm">삭제</a></c:if>
@@ -62,7 +72,7 @@
 			  <td class="text-end">방문IP : ${vo.hostIp}</td>
 			</tr>
 	  </table>
-  	<table class="table table-bordered border-secondary-subtle mb-5">
+  	<table class="table table-bordered border-secondary-subtle mb-5 rounded-3 overflow-hidden">
   		<tr>
   		  <th class="bg-secondary-subtle">글쓴이</th><td>${vo.name}</td>
   		  <th class="bg-secondary-subtle">방문일자</th><td>${fn:substring(vo.visitDate,0,19)}</td>
@@ -90,7 +100,7 @@
   <br/>
   
 <!-- 블록페이지 시작 -->
-<div class="text-center">
+<div class="text-center pb-3">
   <c:if test="${pag > 1}"><a href="guestList?pag=1" class="text-decoration-none btn btn-secondary btn-sm">첫페이지</a></c:if>
   <c:if test="${curBlock > 0}"><a href="guestList?pag=${(curBlock-1)*blockSize+1}" class="text-decoration-none btn btn-secondary btn-sm">이전블록</a></c:if>
   <c:forEach var="i" begin="${(curBlock*blockSize)+1}" end="${(curBlock*blockSize)+blockSize}" varStatus="st">

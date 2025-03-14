@@ -37,18 +37,26 @@
     }
   </script>
   <style>
-    /* th {background-color: #ddd} */
-  </style>
+    .custom-shadow {
+        box-shadow: 0px 0px 20px rgba(100, 149, 237, 0.8) !important; /* 푸른 빛 */
+    }
+    /*
+	<body class="bg-black text-white">
+	<div class="container bg-dark rounded-4 justify-content-center w-100 min-vh-100 overflow-auto custom-shadow">
+	<h2 class="p-3">
+    <table class="table table-bordered text-center align-middle rounded-3 overflow-hidden">
+    */
+	</style>
 </head>
-<body>
+<body class="bg-black text-white">
 <jsp:include page="/WEB-INF/views/include/nav.jsp" />
 <jsp:include page="/WEB-INF/views/include/slide2.jsp" />
 <p><br/></p>
-<div class="container">
-  <h2>개별 회원 조회</h2>
+<div class="container bg-dark rounded-4 justify-content-center w-100 min-vh-100 overflow-auto custom-shadow">
+ <h2 class="p-3">개별 회원 조회</h2>
   <c:if test="${!empty vo}">
 	  <hr/>
-	  <table class="table table-bordered text-center border-secondary">
+	  <table class="table table-bordered text-center border-secondary align-middle rounded-3 overflow-hidden">
 	  	<tr>
 	  	  <th class="bg-secondary-subtle">아이디</th><td>${vo.mid}</td>
 	  	</tr>
@@ -80,9 +88,9 @@
       <input type="button" value="검색(완전일치)" onclick="formSearch()" class="btn btn-success ms-1 me-1"/>
     </div>
   </div>
-</div>
 <br/>
 <div class="text-center"><a href="${ctp}/user/userMain" class="btn btn-warning">돌아가기</a></div>
+</div>
 <p><br/></p>
 <jsp:include page="/WEB-INF/views/include/footer.jsp" />
 </body>

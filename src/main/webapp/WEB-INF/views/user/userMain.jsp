@@ -7,13 +7,24 @@
   <meta charset="UTF-8">
   <title>userMain.jsp</title>
   <jsp:include page="/WEB-INF/views/include/bs5.jsp" />
+  <style>
+    .custom-shadow {
+        box-shadow: 0px 0px 20px rgba(100, 149, 237, 0.8) !important; /* 푸른 빛 */
+    }
+    /*
+	<body class="bg-black text-white">
+	<div class="container bg-dark rounded-4 justify-content-center w-100 min-vh-100 overflow-auto custom-shadow">
+	<h2 class="p-3">
+    <table class="table table-bordered text-center align-middle rounded-3 overflow-hidden">
+    */
+	</style>
 </head>
-<body>
+<body class="bg-black text-white">
 <jsp:include page="/WEB-INF/views/include/nav.jsp" />
 <jsp:include page="/WEB-INF/views/include/slide2.jsp" />
 <p><br/></p>
-<div class="container">
-  <h2>회 원 관 리</h2>
+<div class="container bg-dark rounded-4 justify-content-center w-100 min-vh-100 overflow-auto custom-shadow">
+  <h2 class="p-3">회 원 관 리</h2>
   <hr/>
   <div>전체 회원수 : ${userCnt}명</div>
   <hr/>

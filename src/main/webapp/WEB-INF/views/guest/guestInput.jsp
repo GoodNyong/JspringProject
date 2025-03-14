@@ -10,16 +10,26 @@
   <jsp:include page="/WEB-INF/views/include/bs5.jsp" />
   <style>
     th { text-align: center}
-  </style>
+    
+    .custom-shadow {
+        box-shadow: 0px 0px 20px rgba(100, 149, 237, 0.8) !important; /* 푸른 빛 */
+    }
+    /*
+	<body class="bg-black text-white">
+	<div class="container bg-dark rounded-4 justify-content-center w-100 min-vh-100 overflow-auto custom-shadow">
+	<h2 class="p-3">
+    <table class="table table-bordered text-center align-middle rounded-3 overflow-hidden">
+    */
+	</style>
 </head>
-<body>
+<body class="bg-black text-white">
 <jsp:include page="/WEB-INF/views/include/nav.jsp" />
 <jsp:include page="/WEB-INF/views/include/slide2.jsp" />
 <p><br/></p>
-<div class="container">
-  <h2 class="text-center">방 명 록 글 쓰 기</h2>
+<div class="container bg-dark rounded-4 justify-content-center vh-100 custom-shadow">
+  <h2 class="p-3">방 명 록 글 쓰 기</h2>
   <form name="myform" method="post">
-    <table class="table table-bordered border-secondary-subtle">
+    <table class="table table-bordered border-secondary-subtle rounded-3 overflow-hidden">
       <tr>
         <th class="bg-secondary-subtle align-middle">성명</th>
         <td><input type="text" name="name" id="name" placeholder="작성자명을 입력하세요" required autofocus class="form-control"/></td>
@@ -37,7 +47,7 @@
         <td><textarea rows="5" name="content" id="content" placeholder="글내용을 입력하세요" required class="form-control"></textarea></td>
       </tr>
     </table>
-    <table class="table table-borderless">
+    <table class="table table-dark table-borderless rounded-3 overflow-hidden">
       <tr>
         <td>
           <input type="submit" value="방명록 등록" class="btn btn-success me-2"/>
