@@ -1,9 +1,18 @@
 package com.spring.JspringProject.service;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.spring.JspringProject.dao.BoardDao;
 import com.spring.JspringProject.vo.BoardVo;
@@ -38,6 +47,128 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public int setBoardInputOk(BoardVo vo) {
 		return boardDao.setBoardInputOk(vo);
+	}
+
+	@Override
+	public int setBoardDelete(int idx) {
+		
+		return boardDao.setBoardDelete(idx);
+	}
+
+	// 글쓰기 이미지 파일 처리
+	@Override
+	public void imgCheck(String content) {
+		// <img alt="" src="/JspringProject/data/ckeditor/250321120024_diagram.jpg" style="height:701px; width:971px" />
+		//			   0123456789012345678901234567890123456789012345678901234567890
+		//			   0		 1		   2		 3		   4		 5		   6
+		
+		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
+		String realPath = request.getSession().getServletContext().getRealPath("/resources/data/");
+		
+		int position = 35;
+		String nextImg = content.substring(content.indexOf("src=\"/") + position);
+		boolean sw = true;
+		
+		while(sw) {
+			String imgFile = nextImg.substring(0, nextImg.indexOf("\""));
+			
+			String origFilePath = realPath + "ckeditor/" + imgFile;
+			String copyFilePath = realPath + "board/" + imgFile;
+			
+			fileCopyCheck(origFilePath, copyFilePath);
+			
+			if(nextImg.indexOf("src=\"/") == -1) sw = false;
+			else nextImg = nextImg.substring(nextImg.indexOf("src=\"/") + position);
+		}
+	}
+
+	// 파일 복사 처리(글쓰기, 글수정)
+	private void fileCopyCheck(String origFilePath, String copyFilePath) {
+		try {
+			// file not found exception
+			FileInputStream fis = new FileInputStream(new File(origFilePath));
+			FileOutputStream fos = new FileOutputStream(new File(copyFilePath));
+			
+			byte[] b = new byte[2048];
+			int cnt = 0;
+			while((cnt = fis.read(b)) != -1) { // io exception
+				fos.write(b, 0, cnt);
+			}
+			fos.flush();
+			fos.close();
+			fis.close();
+		} catch (FileNotFoundException e) {
+			System.out.println("[BoardServiceImpl] : 파일복사처리 에러(FileNotFoundException)---------------------------");
+			e.printStackTrace();
+		} catch (IOException e) {
+			System.out.println("[BoardServiceImpl] : 파일복사처리 에러(IOException)-------------------------------------");
+			e.printStackTrace();
+		}
+	}
+
+	// 파일 삭제를 위한 경로 처리
+	@Override
+	public void imgDelete(String content) {
+		//      0         1         2         3         4         4
+		//      01234567890123456789012345678901234567890123456789012345678
+		// <img src="/JspringProject/data/board/250321140356_2503.jpg" style="height:854px; width:1280px" />
+		
+		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
+		String realPath = request.getSession().getServletContext().getRealPath("/resources/data/");
+		
+		int position = 32;
+		String nextImg = content.substring(content.indexOf("src=\"/") + position);
+		boolean sw = true;
+		
+		while(sw) {
+			String imgFile = nextImg.substring(0, nextImg.indexOf("\""));
+			
+			String origFilePath = realPath + "board/" + imgFile;
+			
+			fileDelete(origFilePath);
+			
+			if(nextImg.indexOf("src=\"/") == -1) sw = false;
+			else nextImg = nextImg.substring(nextImg.indexOf("src=\"/") + position);
+		}
+	}
+
+	// 파일 삭제처리
+	private void fileDelete(String origFilePath) {
+		File delFile = new File(origFilePath);
+		if(delFile.exists()) delFile.delete();
+		
+	}
+
+	// 파일 수정 시, 임시 폴더(ckeditor)에 파일 복사
+	@Override
+	public void imgBackup(String content) {
+	// <img alt="" src="/JspringProject/data/board/250321120024_diagram.jpg" style="height:701px; width:971px" />
+	//			   0123456789012345678901234567890123456789012345678901234567890
+	//			   0		 1		   2		 3		   4		 5		   6
+			
+		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
+		String realPath = request.getSession().getServletContext().getRealPath("/resources/data/");
+		
+		int position = 32;
+		String nextImg = content.substring(content.indexOf("src=\"/") + position);
+		boolean sw = true;
+		
+		while(sw) {
+			String imgFile = nextImg.substring(0, nextImg.indexOf("\""));
+			
+			String origFilePath = realPath + "board/" + imgFile;
+			String copyFilePath = realPath + "ckeditor/" + imgFile;
+			
+			fileCopyCheck(origFilePath, copyFilePath);
+			
+			if(nextImg.indexOf("src=\"/") == -1) sw = false;
+			else nextImg = nextImg.substring(nextImg.indexOf("src=\"/") + position);
+		}
+	}
+
+	@Override
+	public int setBoardUpdate(BoardVo vo) {
+		return boardDao.setBoardUpdate(vo);
 	}
 
 }
